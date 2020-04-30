@@ -14,6 +14,9 @@ import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.Table;
 import javax.persistence.Transient;
+import javax.validation.constraints.Email;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.Size;
 
 @Entity
 @Table(name="Users")
@@ -29,23 +32,31 @@ public class User implements Serializable{
 	private Long id;
 	
 	@Column
+	@NotBlank
 	private String firstName;
 	
 	@Column
+	@NotBlank
 	private String lastName;
 	
 	@Column
+	@NotBlank
+	@Email(message="Email no válido! ej: email@email.com")
 	private String email;
 	
 	@Column
+	@NotBlank
+	@Size(min=5, max=8,message="Solo se acepta entre 5-8 caracteres")
 	private String username;
 	
 	@Column
+	@NotBlank
 	private String password;
 	
 	//Que no va ser mapeada por la clase
 	//Omite este valor, no lo crea en la base de datos
 	@Transient
+	@NotBlank
 	private String confirmPassword;
 
 	//Con el Set obligamos a que no se repita ningun valor
