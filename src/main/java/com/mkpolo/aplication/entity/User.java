@@ -55,8 +55,7 @@ public class User implements Serializable{
 	
 	//Que no va ser mapeada por la clase
 	//Omite este valor, no lo crea en la base de datos
-	@Transient
-	@NotBlank
+	@Transient	
 	private String confirmPassword;
 
 	//Con el Set obligamos a que no se repita ningun valor
