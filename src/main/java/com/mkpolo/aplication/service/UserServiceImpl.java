@@ -5,6 +5,7 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.mkpolo.aplication.dto.ChangePasswordForm;
 import com.mkpolo.aplication.entity.User;
 import com.mkpolo.aplication.repository.UserRepository;
 
@@ -68,6 +69,26 @@ public class UserServiceImpl implements UserService{
 		User user = getUserById(id);
 		
 		repository.delete(user);
+	}
+
+	@Override
+	public User changePassword(ChangePasswordForm form) throws Exception {
+		
+		User user = getUserById(form.getId());
+		if (!user.getPassword().equals(form.getCurrentPassword())) {
+			throw new Exception("Current Password invalid");
+		}
+		
+		if (user.getPassword().equals(form.getNewPassword())) {
+			throw new Exception("La nueva contraseña tiene que ser diferente a la anterior.");
+		}
+		
+		if (!form.getNewPassword().equals(form.getConfirmPassword())) {
+			throw new Exception("Las contraseñas no coinciden");
+		}
+		
+		user.setPassword(form.getNewPassword());
+		return repository.save(user);
 	}
 
 }
