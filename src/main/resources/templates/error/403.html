@@ -21,7 +21,7 @@
 		}
 	
 		img{
-			width:75%;
+			width:100%;
 		}
 		
 	</style>
@@ -33,11 +33,7 @@
 			<h4 th:text="${error}"><span th:text="${status}"></span></h4>
 		</div>
 		<div class="card-body">
-			<a href="/userForm" ><img src="static/img/error/500.png" th:src="@{/img/error/500.png}"/></a>
-		</div>
-		<div class="card-footer">
-			<span th:text="${message}">Message</span><br/>
-			<span th:text="${exception}">Trace </span><br/>
+			<a href="/userForm" ><img src="static/img/error/403.png" th:src="@{/img/error/404.png}"/></a>			
 		</div>
 	</div>	    
 </div>
